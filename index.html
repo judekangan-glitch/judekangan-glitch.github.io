@@ -5,84 +5,521 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jude Kangan Dangwam | Data Analyst</title>
 <meta name="description" content="Portfolio of Jude Kangan Dangwam, data analyst based in Jos, Nigeria. Excel and Power BI dashboards built from real Nigerian public data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue: #1f4e9c;
-    --blue-dark: #163a75;
-    --text: #1a1a1a;
-    --muted: #555b66;
-    --line: #dfe3ea;
-    --soft: #f5f7fb;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-soft: #eff6ff;
+    --primary-border: #bfdbfe;
+    --text-main: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --bg-page: #f8fafc;
+    --bg-surface: #ffffff;
+    --border: #e2e8f0;
+    --border-subtle: #f1f5f9;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.03);
+    --shadow-hover: 0 14px 28px -4px rgb(0 0 0 / 0.1), 0 6px 10px -4px rgb(0 0 0 / 0.05);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-full: 9999px;
   }
+
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 17px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
     line-height: 1.65;
-    color: var(--text);
-    background: #ffffff;
+    color: var(--text-body);
+    background-color: var(--bg-page);
+    -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--blue); }
-  a:hover { color: var(--blue-dark); }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
 
-  header.top { border-bottom: 1px solid var(--line); }
-  header.top .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; padding-bottom: 16px; flex-wrap: wrap; gap: 8px; }
-  header.top .brand { font-weight: 700; color: var(--blue); text-decoration: none; }
-  header.top nav a { margin-left: 20px; text-decoration: none; color: var(--muted); font-size: 15px; }
-  header.top nav a:hover { color: var(--blue); }
+  a { color: var(--primary); text-decoration: none; transition: color 0.15s ease; }
+  a:hover { color: var(--primary-hover); }
 
-  .hero { padding: 64px 0 40px; }
-  .hero h1 { margin: 0 0 4px; font-size: 40px; line-height: 1.15; color: var(--blue); }
-  .hero .role { margin: 0 0 22px; font-size: 20px; color: var(--muted); }
-  .hero p { max-width: 680px; margin: 0 0 14px; }
-  .links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .links a {
-    display: inline-block; padding: 8px 16px; border: 1px solid var(--blue);
-    border-radius: 4px; text-decoration: none; font-size: 15px;
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAVIGATION */
+  header.top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-  .links a.primary { background: var(--blue); color: #fff; }
-  .links a.primary:hover { background: var(--blue-dark); }
-
-  section { padding: 36px 0; border-top: 1px solid var(--line); }
-  section h2 { margin: 0 0 18px; font-size: 26px; color: var(--blue); }
-  h3 { margin: 26px 0 8px; font-size: 18px; }
-
-  .project h3.title { margin-top: 0; font-size: 22px; }
-  .meta { color: var(--muted); font-size: 15px; margin: 0 0 18px; }
-  .project ul { margin: 0 0 8px; padding-left: 22px; }
-  .project li { margin-bottom: 7px; }
-
-  .viewer { margin: 26px 0 8px; }
-  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-  .tabs button {
-    font: inherit; font-size: 14px; padding: 6px 14px; cursor: pointer;
-    background: #fff; color: var(--blue); border: 1px solid var(--blue); border-radius: 4px;
+  header.top .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
-  .tabs button[aria-pressed="true"] { background: var(--blue); color: #fff; }
-  .viewer img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
-  .caption { font-size: 14px; color: var(--muted); margin: 8px 0 0; }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--text-main);
+  }
+  .brand-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  header.top nav { display: flex; gap: 20px; align-items: center; }
+  header.top nav a {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s ease;
+  }
+  header.top nav a:hover {
+    color: var(--text-main);
+    background: var(--border-subtle);
+  }
 
-  .files { margin-top: 14px; font-size: 15px; }
-  .files a { margin-right: 18px; }
+  /* HERO */
+  .hero {
+    padding: 72px 0 48px;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    position: relative;
+  }
+  .pulse-dot::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    border-radius: 50%;
+    background: #10b981;
+    animation: pulse 2s infinite ease-out;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-  .grid .card { border: 1px solid var(--line); padding: 16px 18px; border-radius: 4px; background: var(--soft); }
-  .grid .card h3 { margin: 0 0 6px; font-size: 17px; }
-  .grid .card p { margin: 0; font-size: 15px; }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+  }
+  .hero .role {
+    margin: 0 0 24px;
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .hero p {
+    max-width: 720px;
+    margin: 0 0 16px;
+    font-size: 17px;
+    color: var(--text-body);
+    line-height: 1.7;
+  }
+  .hero .links {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn.primary {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+  }
+  .btn.primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+    transform: translateY(-1px);
+  }
+  .btn.secondary {
+    background: var(--bg-surface);
+    color: var(--text-main);
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn.secondary:hover {
+    background: var(--border-subtle);
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+  }
 
-  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px 40px; }
-  .skills p { margin: 0 0 6px; }
+  /* SECTION HEADERS */
+  section { padding: 48px 0; }
+  .section-header {
+    margin-bottom: 32px;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+  }
 
-  footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--muted); font-size: 14px; }
+  /* PROJECT CARDS */
+  .project-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 36px;
+    margin-bottom: 40px;
+    transition: box-shadow 0.2s ease;
+  }
+  .project-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
 
-  @media (max-width: 600px) {
-    body { font-size: 16px; }
-    .hero { padding: 40px 0 28px; }
-    .hero h1 { font-size: 32px; }
-    header.top nav a { margin-left: 14px; }
+  .project-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+  .project-title {
+    margin: 0 0 12px;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+  }
+  .tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 11px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--border-subtle);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .tag.featured {
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-color: var(--primary-border);
+  }
+  .project-meta {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .content-block { margin-bottom: 24px; }
+  .content-block h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .content-block p {
+    margin: 0;
+    color: var(--text-body);
+    font-size: 15px;
+  }
+  .content-block ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
+  }
+  .content-block li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: var(--text-body);
+  }
+
+  /* DASHBOARD VIEWER */
+  .viewer-box {
+    margin: 32px 0 20px;
+    background: #0f172a;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: var(--shadow-lg);
+  }
+  .viewer-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .viewer-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tab-btn {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    transition: all 0.15s ease;
+  }
+  .tab-btn:hover {
+    background: #334155;
+    color: #f8fafc;
+  }
+  .tab-btn[aria-pressed="true"] {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+  }
+  .viewer-window {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #000;
+    border: 1px solid #334155;
+  }
+  .viewer-window img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.2s ease;
+  }
+  .viewer-caption {
+    margin: 12px 4px 0;
+    font-size: 13px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .project-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* OTHER WORK GRID */
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .work-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .work-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+  }
+  .work-card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+  .work-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--text-body);
+    line-height: 1.6;
+  }
+  .work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* SKILLS SECTION */
+  .skills-wrapper {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: var(--shadow-sm);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+  }
+  .skills-group h3 {
+    margin: 0 0 14px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skills-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-chip {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-body);
+  }
+  .skill-chip.accent {
+    background: var(--primary-soft);
+    border-color: var(--primary-border);
+    color: var(--primary-hover);
+    font-weight: 600;
+  }
+
+  /* CONTACT CALLOUT */
+  .contact-box {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-radius: var(--radius-lg);
+    padding: 44px;
+    color: #ffffff;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+  .contact-box h2 {
+    margin: 0 0 12px;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+  .contact-box p {
+    margin: 0 auto 28px;
+    max-width: 600px;
+    color: #94a3b8;
+    font-size: 16px;
+  }
+  .contact-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 48px;
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ICONS (SVG helpers) */
+  .icon {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+    stroke: currentColor;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 48px 0 32px; }
+    .hero h1 { font-size: 36px; }
+    .project-card { padding: 24px; }
+    .skills-wrapper { padding: 24px; }
+    .contact-box { padding: 32px 20px; }
   }
 </style>
 </head>
@@ -90,10 +527,13 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top">Jude Kangan Dangwam</a>
+    <a class="brand" href="#top">
+      <span class="brand-badge">JK</span>
+      <span>Jude Kangan Dangwam</span>
+    </a>
     <nav>
       <a href="#projects">Projects</a>
-      <a href="#other">Other work</a>
+      <a href="#other">Other Work</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -103,165 +543,326 @@
 <main id="top">
   <div class="wrap">
 
+    <!-- HERO SECTION -->
     <div class="hero">
+      <div class="status-badge">
+        <span class="pulse-dot"></span> Available for Data Analyst Roles & Placements
+      </div>
       <h1>Jude Kangan Dangwam</h1>
-      <p class="role">Data analyst, Jos, Nigeria</p>
+      <p class="role">Data Analyst &bull; Jos, Plateau State, Nigeria</p>
       <p>I am a Medical Laboratory Science graduate of the University of Jos, trained in data analysis through the 3MTT programme. I like working with real public data: finding it, cleaning it, checking it, and turning it into something people can understand quickly.</p>
       <p>My laboratory training taught me to be careful with numbers. I also build health platforms that are live in Nigeria, so I think about the people who will use the data, not only the data itself.</p>
+      
       <div class="links">
-        <a class="primary" href="assets/Jude_Kangan_Dangwam_CV_Data_Analyst.pdf">Download my CV</a>
-        <a href="https://github.com/judekangan-glitch">GitHub</a>
-        <a href="https://www.linkedin.com/in/jude-kangan-dangwam">LinkedIn</a>
-        <a href="mailto:judekangan@gmail.com">Email</a>
+        <a class="btn primary" href="assets/Jude_Kangan_Dangwam_CV_Data_Analyst.pdf">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download my CV
+        </a>
+        <a class="btn secondary" href="https://github.com/judekangan-glitch" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          GitHub
+        </a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/jude-kangan-dangwam" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+        <a class="btn secondary" href="mailto:judekangan@gmail.com">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Email
+        </a>
       </div>
     </div>
 
+    <!-- FEATURED PROJECTS -->
     <section id="projects">
-      <h2>Projects</h2>
+      <div class="section-header">
+        <span class="section-tag">Case Studies</span>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
 
       <!-- PROJECT 1 -->
-      <div class="project" id="agri">
-        <h3 class="title">Agricultural Output by State: Yam, Cassava and Rice</h3>
-        <p class="meta">3MTT Data Analysis and Visualization capstone, 2026 &nbsp;|&nbsp; Excel, Power BI (DAX) &nbsp;|&nbsp; Source: NAERLS/FMARD Agricultural Performance Survey, 2024 Wet Season</p>
-
-        <h3>The question</h3>
-        <p>Crop output planning in Nigeria needs better data. Which states produce the most yam, cassava and rice, and how did output change between 2023 and 2024?</p>
-
-        <h3>What I did</h3>
-        <ul>
-          <li>Compared several datasets and chose the NAERLS/FMARD report because it is official and covers both 2023 and 2024. I rejected a synthetic dataset and unverified files.</li>
-          <li>Transcribed Tables 12.1, 12.9 and 12.10 into Excel: 97 state and crop rows (37 rice, 34 cassava, 26 yam). I standardised state names and left unreported states blank instead of filling them with zeros.</li>
-          <li>Added year-on-year change formulas (194 formulas, no errors), a long-format Master Data sheet and a National Totals sheet for checking, then set the sheets up as Excel Tables so Power BI could read them cleanly.</li>
-          <li>Built the dashboard in Power BI with five DAX measures, a crop filter, KPI cards, ranked bar charts and a shaded table. I checked the rice total against the published national figure of 9,129,908 MT.</li>
-        </ul>
-
-        <h3>What I found</h3>
-        <ul>
-          <li>Niger State leads rice (707,072 MT) and yam (5,149,717 MT). Benue leads cassava (4,204,773 MT).</li>
-          <li>Borno's rice output fell 14.6%, the largest fall in the data. Cassava also fell in Zamfara (4.7%), Sokoto (4.0%) and Katsina (1.2%). Every other figure was flat or higher.</li>
-          <li>The best yields are not in the biggest producing states: Kano for rice (3.58 MT per hectare), Nasarawa for yam (19.74) and Ondo for cassava (17.35).</li>
-          <li>Rice was reported in all 37 locations (36 states plus the FCT), cassava in 34 and yam in 26. That matches how these crops are grown, so I treated it as real coverage, not missing data.</li>
-        </ul>
-
-        <div class="viewer" data-viewer>
-          <div class="tabs" role="group" aria-label="Choose a dashboard view">
-            <button type="button" aria-pressed="true" data-src="assets/da11-all-crops.png" data-alt="Agricultural Output by State dashboard with all three crops selected" data-cap="All three crops: total production 128M MT in 2024 against 125M MT in 2023.">All crops</button>
-            <button type="button" aria-pressed="false" data-src="assets/da11-rice.png" data-alt="Dashboard filtered to rice" data-cap="Rice: 9,129,908 MT in 2024, up 2.56%, reported by 37 locations.">Rice</button>
-            <button type="button" aria-pressed="false" data-src="assets/da11-cassava.png" data-alt="Dashboard filtered to cassava" data-cap="Cassava: 64.4M MT in 2024, up 2.05%, reported by 34 locations.">Cassava</button>
-            <button type="button" aria-pressed="false" data-src="assets/da11-yam.png" data-alt="Dashboard filtered to yam" data-cap="Yam: 54.6M MT in 2024, up 2.21%, reported by 26 locations.">Yam</button>
+      <article class="project-card" id="agri">
+        <div class="project-header">
+          <h3 class="project-title">Agricultural Output by State: Yam, Cassava and Rice</h3>
+          <div class="tag-group">
+            <span class="tag featured">Excel &bull; Power BI (DAX)</span>
+            <span class="tag">3MTT Capstone</span>
+            <span class="tag">97 State-Crop Records</span>
+            <span class="tag">Year-over-Year Analysis</span>
           </div>
-          <img src="assets/da11-all-crops.png" alt="Agricultural Output by State dashboard with all three crops selected" loading="lazy">
-          <p class="caption">All three crops: total production 128M MT in 2024 against 125M MT in 2023.</p>
+          <p class="project-meta">Source: NAERLS/FMARD Agricultural Performance Survey, 2024 Wet Season</p>
         </div>
 
-        <p class="files">
-          <a href="https://github.com/judekangan-glitch/agricultural-output-by-state">Project files on GitHub</a>
-        </p>
-      </div>
-    </section>
+        <div class="content-block">
+          <h4>The Question</h4>
+          <p>Crop output planning in Nigeria needs better data. Which states produce the most yam, cassava and rice, and how did output change between 2023 and 2024?</p>
+        </div>
 
-    <section>
+        <div class="content-block">
+          <h4>What I Did</h4>
+          <ul>
+            <li>Compared several datasets and chose the NAERLS/FMARD report because it is official and covers both 2023 and 2024. I rejected a synthetic dataset and unverified files.</li>
+            <li>Transcribed Tables 12.1, 12.9 and 12.10 into Excel: 97 state and crop rows (37 rice, 34 cassava, 26 yam). I standardised state names and left unreported states blank instead of filling them with zeros.</li>
+            <li>Added year-on-year change formulas (194 formulas, no errors), a long-format Master Data sheet and a National Totals sheet for checking, then set the sheets up as Excel Tables so Power BI could read them cleanly.</li>
+            <li>Built the dashboard in Power BI with five DAX measures, a crop filter, KPI cards, ranked bar charts and a shaded table. I checked the rice total against the published national figure of 9,129,908 MT.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h4>What I Found</h4>
+          <ul>
+            <li>Niger State leads rice (707,072 MT) and yam (5,149,717 MT). Benue leads cassava (4,204,773 MT).</li>
+            <li>Borno's rice output fell 14.6%, the largest fall in the data. Cassava also fell in Zamfara (4.7%), Sokoto (4.0%) and Katsina (1.2%). Every other figure was flat or higher.</li>
+            <li>The best yields are not in the biggest producing states: Kano for rice (3.58 MT per hectare), Nasarawa for yam (19.74) and Ondo for cassava (17.35).</li>
+            <li>Rice was reported in all 37 locations (36 states plus the FCT), cassava in 34 and yam in 26. That matches how these crops are grown, so I treated it as real coverage, not missing data.</li>
+          </ul>
+        </div>
+
+        <!-- Interactive Viewer -->
+        <div class="viewer-box" data-viewer>
+          <div class="viewer-toolbar">
+            <div class="viewer-tabs" role="group" aria-label="Choose a dashboard view">
+              <button class="tab-btn" type="button" aria-pressed="true" data-src="assets/da11-all-crops.png" data-alt="Agricultural Output by State dashboard with all three crops selected" data-cap="All three crops: total production 128M MT in 2024 against 125M MT in 2023.">All crops</button>
+              <button class="tab-btn" type="button" aria-pressed="false" data-src="assets/da11-rice.png" data-alt="Dashboard filtered to rice" data-cap="Rice: 9,129,908 MT in 2024, up 2.56%, reported by 37 locations.">Rice</button>
+              <button class="tab-btn" type="button" aria-pressed="false" data-src="assets/da11-cassava.png" data-alt="Dashboard filtered to cassava" data-cap="Cassava: 64.4M MT in 2024, up 2.05%, reported by 34 locations.">Cassava</button>
+              <button class="tab-btn" type="button" aria-pressed="false" data-src="assets/da11-yam.png" data-alt="Dashboard filtered to yam" data-cap="Yam: 54.6M MT in 2024, up 2.21%, reported by 26 locations.">Yam</button>
+            </div>
+          </div>
+          <div class="viewer-window">
+            <img src="assets/da11-all-crops.png" alt="Agricultural Output by State dashboard with all three crops selected" loading="lazy">
+          </div>
+          <p class="viewer-caption">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span class="caption-text">All three crops: total production 128M MT in 2024 against 125M MT in 2023.</span>
+          </p>
+        </div>
+
+        <div class="project-actions">
+          <a class="btn secondary" href="https://github.com/judekangan-glitch/agricultural-output-by-state" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            View Project Files on GitHub (.xlsx, .pbix, report)
+          </a>
+        </div>
+      </article>
+
       <!-- PROJECT 2 -->
-      <div class="project" id="telecom">
-        <h3 class="title">Telecom Subscriber Trends by Operator, 2022 to 2023</h3>
-        <p class="meta">3MTT project DA-12, 2026 &nbsp;|&nbsp; Excel, Power BI &nbsp;|&nbsp; Source: Nigerian Communications Commission, Quarterly Subscriber Operator Data</p>
-
-        <h3>The question</h3>
-        <p>How did subscriber numbers change across Nigeria's four mobile operators, MTN, Globacom, Airtel and 9mobile, between September 2022 and September 2023?</p>
-
-        <h3>What I did</h3>
-        <ul>
-          <li>Sourced the NCC quarterly subscriber data and kept the raw table exactly as published.</li>
-          <li>Rebuilt it in long format as an Excel Table with quarter-on-quarter change formulas.</li>
-          <li>Built a Power BI dashboard with an operator filter, KPI cards, a trend line, a ranked bar chart and a detail table, and wrote a one-page insight summary.</li>
-        </ul>
-
-        <h3>What I found</h3>
-        <ul>
-          <li>The four operators had about 221.3 million subscribers by September 2023. MTN held about 38.8%, Globacom 27.8%, Airtel 27.2% and 9mobile 6.2%.</li>
-          <li>MTN fell 7.5% between March and June 2023, then recovered 1.4% the next quarter, but was still below its March level.</li>
-          <li>9mobile is the smallest operator but grew fastest, about 7.2% over the year.</li>
-          <li>Globacom grew in every quarter. Airtel was almost flat after December 2022, with one small dip of 0.2% in June 2023.</li>
-        </ul>
-
-        <div class="viewer" data-viewer>
-          <div class="tabs" role="group" aria-label="Choose an operator view">
-            <button type="button" aria-pressed="true" data-src="assets/da12-all-operators.png" data-alt="Telecom dashboard with all four operators" data-cap="All operators: 221M subscribers in the latest quarter, up 0.8% on the quarter before.">All operators</button>
-            <button type="button" aria-pressed="false" data-src="assets/da12-mtn.png" data-alt="Telecom dashboard filtered to MTN Nigeria" data-cap="MTN Nigeria: 86M subscribers, with the 7.5% fall between March and June 2023 visible on the line.">MTN</button>
-            <button type="button" aria-pressed="false" data-src="assets/da12-globacom.png" data-alt="Telecom dashboard filtered to Globacom" data-cap="Globacom: 61M subscribers, growing in every quarter.">Globacom</button>
-            <button type="button" aria-pressed="false" data-src="assets/da12-airtel.png" data-alt="Telecom dashboard filtered to Airtel" data-cap="Airtel: 60M subscribers, almost flat after December 2022.">Airtel</button>
-            <button type="button" aria-pressed="false" data-src="assets/da12-9mobile.png" data-alt="Telecom dashboard filtered to 9mobile" data-cap="9mobile: 14M subscribers, the smallest operator with the fastest growth.">9mobile</button>
+      <article class="project-card" id="telecom">
+        <div class="project-header">
+          <h3 class="project-title">Telecom Subscriber Trends by Operator, 2022 to 2023</h3>
+          <div class="tag-group">
+            <span class="tag featured">Excel &bull; Power BI</span>
+            <span class="tag">3MTT DA-12</span>
+            <span class="tag">221.3M Total Subscribers</span>
+            <span class="tag">Quarter-over-Quarter Trend</span>
           </div>
-          <img src="assets/da12-all-operators.png" alt="Telecom dashboard with all four operators" loading="lazy">
-          <p class="caption">All operators: 221M subscribers in the latest quarter, up 0.8% on the quarter before. The note at the bottom of the page is fixed and appears on every view.</p>
+          <p class="project-meta">Source: Nigerian Communications Commission, Quarterly Subscriber Operator Data</p>
         </div>
 
-        <p class="files">
-          <a href="https://github.com/judekangan-glitch/telecom-subscriber-trends">Project files on GitHub</a>
-        </p>
-      </div>
+        <div class="content-block">
+          <h4>The Question</h4>
+          <p>How did subscriber numbers change across Nigeria's four mobile operators, MTN, Globacom, Airtel and 9mobile, between September 2022 and September 2023?</p>
+        </div>
+
+        <div class="content-block">
+          <h4>What I Did</h4>
+          <ul>
+            <li>Sourced the NCC quarterly subscriber data and kept the raw table exactly as published.</li>
+            <li>Rebuilt it in long format as an Excel Table with quarter-on-quarter change formulas.</li>
+            <li>Built a Power BI dashboard with an operator filter, KPI cards, a trend line, a ranked bar chart and a detail table, and wrote a one-page insight summary.</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <h4>What I Found</h4>
+          <ul>
+            <li>The four operators had about 221.3 million subscribers by September 2023. MTN held about 38.8%, Globacom 27.8%, Airtel 27.2% and 9mobile 6.2%.</li>
+            <li>MTN fell 7.5% between March and June 2023, then recovered 1.4% the next quarter, but was still below its March level.</li>
+            <li>9mobile is the smallest operator but grew fastest, about 7.2% over the year.</li>
+            <li>Globacom grew in every quarter. Airtel was almost flat after December 2022, with one small dip of 0.2% in June 2023.</li>
+          </ul>
+        </div>
+
+        <!-- Interactive Viewer -->
+        <div class="viewer-box" data-viewer>
+          <div class="viewer-toolbar">
+            <div class="viewer-tabs" role="group" aria-label="Choose an operator view">
+              <button class="tab-btn" type="button" aria-pressed="true" data-src="assets/da12-all-operators.png" data-alt="Telecom dashboard with all four operators" data-cap="All operators: 221M subscribers in the latest quarter, up 0.8% on the quarter before.">All operators</button>
+              <button class="tab-btn" type="button" aria-pressed="false" data-src="assets/da12-mtn.png" data-alt="Telecom dashboard filtered to MTN Nigeria" data-cap="MTN Nigeria: 86M subscribers, with the 7.5% fall between March and June 2023 visible on the line.">MTN</button>
+              <button class="tab-btn" type="button" aria-pressed="false" data-src="assets/da12-globacom.png" data-alt="Telecom dashboard filtered to Globacom" data-cap="Globacom: 61M subscribers, growing in every quarter.">Globacom</button>
+              <button class="tab-btn" type="button" aria-pressed="false" data-src="assets/da12-airtel.png" data-alt="Telecom dashboard filtered to Airtel" data-cap="Airtel: 60M subscribers, almost flat after December 2022.">Airtel</button>
+              <button class="tab-btn" type="button" aria-pressed="false" data-src="assets/da12-9mobile.png" data-alt="Telecom dashboard filtered to 9mobile" data-cap="9mobile: 14M subscribers, the smallest operator with the fastest growth.">9mobile</button>
+            </div>
+          </div>
+          <div class="viewer-window">
+            <img src="assets/da12-all-operators.png" alt="Telecom dashboard with all four operators" loading="lazy">
+          </div>
+          <p class="viewer-caption">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span class="caption-text">All operators: 221M subscribers in the latest quarter, up 0.8% on the quarter before. The note at the bottom of the page is fixed and appears on every view.</span>
+          </p>
+        </div>
+
+        <div class="project-actions">
+          <a class="btn secondary" href="https://github.com/judekangan-glitch/telecom-subscriber-trends" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            View Project Files on GitHub (.xlsx, .pbix, report)
+          </a>
+        </div>
+      </article>
     </section>
 
+    <!-- OTHER DATA WORK -->
     <section id="other">
-      <h2>Other data work</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Final year research project</h3>
-          <p>Entered, cleaned and analysed laboratory results for 191 participants from 8 departments, covering susceptibility to 13 antibiotics. University of Jos, 2025 to 2026.</p>
+      <div class="section-header">
+        <span class="section-tag">Portfolio Extensions</span>
+        <h2 class="section-title">Other Data Work</h2>
+      </div>
+      <div class="grid-cards">
+        <div class="work-card">
+          <div>
+            <h3>Final Year Research Project</h3>
+            <p>Entered, cleaned and analysed laboratory results for 191 participants from 8 departments, covering susceptibility to 13 antibiotics. University of Jos, 2025 to 2026.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3><a href="https://langtang-healthlink-v3.vercel.app">Langtang HealthLink</a></h3>
-          <p>A disease surveillance dashboard for Langtang North LGA with four user roles, improved over three rounds of feedback from local officials and health workers.</p>
+
+        <div class="work-card">
+          <div>
+            <h3>Langtang HealthLink</h3>
+            <p>A disease surveillance dashboard for Langtang North LGA with four user roles, improved over three rounds of feedback from local officials and health workers.</p>
+          </div>
+          <a class="work-link" href="https://langtang-healthlink-v3.vercel.app" target="_blank" rel="noopener">
+            Visit live dashboard &rarr;
+          </a>
         </div>
-        <div class="card">
-          <h3>nigeria-lga-data</h3>
-          <p>An open-source dataset covering all 774 Nigerian LGAs, published as an npm package for public health mapping and digital health tools.</p>
+
+        <div class="work-card">
+          <div>
+            <h3>nigeria-lga-data</h3>
+            <p>An open-source dataset covering all 774 Nigerian LGAs, published as an npm package for public health mapping and digital health tools.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3><a href="https://medwise-nigeria.vercel.app">MedWise Nigeria</a></h3>
-          <p>A live health platform in five Nigerian languages. First place at the 3MTT NextGen Knowledge Showcase, Plateau State.</p>
+
+        <div class="work-card">
+          <div>
+            <h3>MedWise Nigeria</h3>
+            <p>A live health platform in five Nigerian languages. First place at the 3MTT NextGen Knowledge Showcase, Plateau State.</p>
+          </div>
+          <a class="work-link" href="https://medwise-nigeria.vercel.app" target="_blank" rel="noopener">
+            Visit platform &rarr;
+          </a>
         </div>
       </div>
     </section>
 
+    <!-- SKILLS & TRAINING -->
     <section id="skills">
-      <h2>Skills and training</h2>
-      <div class="skills">
-        <div>
-          <p><strong>Analysis</strong><br>Data sourcing and checking, cleaning, long-format modelling, year-on-year comparison, short written insights</p>
-          <p><strong>Tools</strong><br>Excel (formulas, Tables), Power BI and DAX, SQL, SPSS, Google Workspace, TypeScript</p>
+      <div class="section-header">
+        <span class="section-tag">Capabilities</span>
+        <h2 class="section-title">Skills & Background</h2>
+      </div>
+      <div class="skills-wrapper">
+        <div class="skills-group">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            Data Analysis & Methods
+          </h3>
+          <div class="skills-chips">
+            <span class="skill-chip accent">Data Sourcing & Validation</span>
+            <span class="skill-chip accent">Data Cleaning</span>
+            <span class="skill-chip">Long-Format Modelling</span>
+            <span class="skill-chip">Year-on-Year Analysis</span>
+            <span class="skill-chip">KPI Formulation</span>
+            <span class="skill-chip">Executive Reporting</span>
+          </div>
         </div>
-        <div>
-          <p><strong>Training</strong><br>Data Analysis and Visualization, 3MTT Initiative (NITDA), June 2026</p>
-          <p><strong>Education</strong><br>Bachelor of Medical Laboratory Science, University of Jos</p>
+
+        <div class="skills-group">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            Tools & Technologies
+          </h3>
+          <div class="skills-chips">
+            <span class="skill-chip accent">Microsoft Excel (Formulas, Tables)</span>
+            <span class="skill-chip accent">Power BI & DAX</span>
+            <span class="skill-chip">SQL</span>
+            <span class="skill-chip">SPSS</span>
+            <span class="skill-chip">Google Workspace</span>
+            <span class="skill-chip">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            Training & Certifications
+          </h3>
+          <div class="skills-chips">
+            <span class="skill-chip">3MTT Data Analysis & Visualization (NITDA, June 2026)</span>
+            <span class="skill-chip">3MTT NextGen Knowledge Showcase 1st Place (Plateau)</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+            Education
+          </h3>
+          <div class="skills-chips">
+            <span class="skill-chip">Bachelor of Medical Laboratory Science (BMLS)</span>
+            <span class="skill-chip">University of Jos</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT CTA -->
     <section id="contact">
-      <h2>Contact</h2>
-      <p>I am looking for a placement where I can work with real datasets. You can reach me at <a href="mailto:judekangan@gmail.com">judekangan@gmail.com</a>, on <a href="https://www.linkedin.com/in/jude-kangan-dangwam">LinkedIn</a> or through my <a href="https://github.com/judekangan-glitch">GitHub</a>.</p>
+      <div class="contact-box">
+        <h2>Let's Work With Real Data Together</h2>
+        <p>I am actively seeking placement and data analyst roles where I can apply rigorous validation and clear visualization to real datasets. Let's connect!</p>
+        <div class="contact-buttons">
+          <a class="btn primary" href="mailto:judekangan@gmail.com">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            judekangan@gmail.com
+          </a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/jude-kangan-dangwam" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            LinkedIn Profile
+          </a>
+          <a class="btn secondary" href="https://github.com/judekangan-glitch" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub Profile
+          </a>
+        </div>
+      </div>
     </section>
 
   </div>
 </main>
 
 <footer>
-  <div class="wrap">Jude Kangan Dangwam, Jos, Plateau State, Nigeria</div>
+  <div class="wrap">
+    <span>&copy; 2026 Jude Kangan Dangwam &bull; Jos, Plateau State, Nigeria</span>
+    <a href="#top" style="color: var(--text-muted); font-size: 13px;">Back to top &uarr;</a>
+  </div>
 </footer>
 
 <script>
   document.querySelectorAll('[data-viewer]').forEach(function (viewer) {
     var img = viewer.querySelector('img');
-    var cap = viewer.querySelector('.caption');
-    var buttons = viewer.querySelectorAll('button');
+    var cap = viewer.querySelector('.caption-text');
+    var buttons = viewer.querySelectorAll('.tab-btn');
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         buttons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
         btn.setAttribute('aria-pressed', 'true');
-        img.src = btn.getAttribute('data-src');
-        img.alt = btn.getAttribute('data-alt');
-        cap.textContent = btn.getAttribute('data-cap');
+        img.style.opacity = '0.3';
+        setTimeout(function() {
+          img.src = btn.getAttribute('data-src');
+          img.alt = btn.getAttribute('data-alt');
+          if (cap) cap.textContent = btn.getAttribute('data-cap');
+          img.style.opacity = '1';
+        }, 120);
       });
     });
   });
