@@ -104,6 +104,43 @@
   .hero {
     padding: 72px 0 48px;
   }
+  .hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+  .hero-content {
+    flex: 1;
+    min-width: 0;
+  }
+  .hero-avatar {
+    flex-shrink: 0;
+  }
+  .avatar-ring {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 50%, #06b6d4 100%);
+    box-shadow: 0 16px 36px -8px rgba(37, 99, 235, 0.3), 0 6px 14px -2px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .avatar-ring:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px -8px rgba(37, 99, 235, 0.4), 0 8px 18px -2px rgba(0, 0, 0, 0.12);
+  }
+  .avatar-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 15%;
+    background: #ffffff;
+    border: 4px solid #ffffff;
+  }
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -516,6 +553,15 @@
 
   @media (max-width: 768px) {
     .hero { padding: 48px 0 32px; }
+    .hero-container {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 28px;
+    }
+    .avatar-ring {
+      width: 150px;
+      height: 150px;
+    }
     .hero h1 { font-size: 36px; }
     .project-card { padding: 24px; }
     .skills-wrapper { padding: 24px; }
@@ -545,31 +591,40 @@
 
     <!-- HERO SECTION -->
     <div class="hero">
-      <div class="status-badge">
-        <span class="pulse-dot"></span> Available for Data Analyst Roles & Placements
-      </div>
-      <h1>Jude Kangan Dangwam</h1>
-      <p class="role">Data Analyst &bull; Jos, Plateau State, Nigeria</p>
-      <p>I am a Medical Laboratory Science graduate of the University of Jos, trained in data analysis through the 3MTT programme. I like working with real public data: finding it, cleaning it, checking it, and turning it into something people can understand quickly.</p>
-      <p>My laboratory training taught me to be careful with numbers. I also build health platforms that are live in Nigeria, so I think about the people who will use the data, not only the data itself.</p>
-      
-      <div class="links">
-        <a class="btn primary" href="assets/Jude_Kangan_Dangwam_CV_Data_Analyst.pdf">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Download my CV
-        </a>
-        <a class="btn secondary" href="https://github.com/judekangan-glitch" target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          GitHub
-        </a>
-        <a class="btn secondary" href="https://www.linkedin.com/in/jude-kangan-dangwam" target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          LinkedIn
-        </a>
-        <a class="btn secondary" href="mailto:judekangan@gmail.com">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          Email
-        </a>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="pulse-dot"></span> Available for Data Analyst Roles & Placements
+          </div>
+          <h1>Jude Kangan Dangwam</h1>
+          <p class="role">Data Analyst &bull; Jos, Plateau State, Nigeria</p>
+          <p>I am a Medical Laboratory Science graduate of the University of Jos, trained in data analysis through the 3MTT programme. I like working with real public data: finding it, cleaning it, checking it, and turning it into something people can understand quickly.</p>
+          <p>My laboratory training taught me to be careful with numbers. I also build health platforms that are live in Nigeria, so I think about the people who will use the data, not only the data itself.</p>
+          
+          <div class="links">
+            <a class="btn primary" href="assets/Jude_Kangan_Dangwam_CV_Data_Analyst.pdf">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Download my CV
+            </a>
+            <a class="btn secondary" href="https://github.com/judekangan-glitch" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              GitHub
+            </a>
+            <a class="btn secondary" href="https://www.linkedin.com/in/jude-kangan-dangwam" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              LinkedIn
+            </a>
+            <a class="btn secondary" href="mailto:judekangan@gmail.com">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              Email
+            </a>
+          </div>
+        </div>
+        <div class="hero-avatar">
+          <div class="avatar-ring">
+            <img src="assets/Dangwam.png" alt="Jude Kangan Dangwam" class="avatar-img" width="220" height="220">
+          </div>
+        </div>
       </div>
     </div>
 
